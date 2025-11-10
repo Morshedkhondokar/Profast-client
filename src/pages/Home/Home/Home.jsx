@@ -4,6 +4,7 @@ import OurServices from "../Services/OurServices";
 import Benefits from '../Benefits/Benefits.jsx'
 import BeMerchant from "../BeMerchant/BeMerchant.jsx";
 import HowItWorks from "../HowItWorks/HowItWorks.jsx";
+import ReviewSection from "../../reviews/ReviewSection.jsx";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
       <ClientLogosMarquee/>
       <Benefits/>
       <BeMerchant/>
+      <ReviewSection/>
     </div>
   );
 };
