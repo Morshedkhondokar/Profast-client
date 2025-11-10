@@ -5,6 +5,7 @@ import Benefits from '../Benefits/Benefits.jsx'
 import BeMerchant from "../BeMerchant/BeMerchant.jsx";
 import HowItWorks from "../HowItWorks/HowItWorks.jsx";
 import ReviewSection from "../../reviews/ReviewSection.jsx";
+import FAQ from "../FAQ/FAQ.jsx";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <Benefits/>
       <BeMerchant/>
       <ReviewSection/>
+      <FAQ/>
     </div>
   );
 };

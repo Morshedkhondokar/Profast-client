@@ -6,7 +6,7 @@ const ReviewCard = ({ img, name, review }) => {
     <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between h-full">
       
       {/* Quote Icon */}
-      <FaQuoteRight className="text-teal-300 text-3xl mb-4" />
+      <FaQuoteRight className="text-secondary text-3xl mb-4" />
 
       {/* Review Text */}
       <p className="text-gray-600 leading-relaxed mb-6">
@@ -26,7 +26,7 @@ const ReviewCard = ({ img, name, review }) => {
         />
 
         <div>
-          <h3 className="text-lg font-semibold text-teal-900">{name}</h3>
+          <h3 className="text-lg font-semibold text-secondary">{name}</h3>
         </div>
       </div>
     </div>
