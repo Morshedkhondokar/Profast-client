@@ -1,10 +1,12 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-
+  const {user, logOut} = useAuth() 
     const navItems =<>
         <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/coverage'>Coverage</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
     </>
   return (
@@ -49,7 +51,11 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+       {
+       user ?  <button onClick={logOut} className="btn btn-primary text-black">LogOut</button>
+       :   
+         <Link to='/login' className="btn btn-primary text-black">Sign in</Link>
+        }
       </div>
     </div>
   );
