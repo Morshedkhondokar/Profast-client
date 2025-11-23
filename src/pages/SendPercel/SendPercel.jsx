@@ -219,7 +219,12 @@ const SendParcel = () => {
       <p className="text-gray-200 mb-6">Enter your parcel details</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-        <ParcelInfo register={register} errors={errors} watch={watch} />
+        <ParcelInfo
+        register={register} 
+        errors={errors} 
+        watch={watch} 
+        setValue={setValue} 
+        />
 
         <div className="flex gap-5 flex-col md:flex-row">
           <div className="flex-1">

@@ -1,12 +1,22 @@
-const ParcelInfo = ({ register, errors, watch }) => {
+import { useEffect } from "react";
+
+const ParcelInfo = ({ register, errors, watch,setValue }) => {
   const parcelType = watch("parcelType");
+
+  // clear parcel weight if parcel type is document
+  useEffect(() => {
+    if (parcelType === "document") {
+      setValue("parcelWeight", undefined, { shouldValidate: true }); 
+    }
+  }, [parcelType, setValue]);
+
 
   return (
     <div className="border-b pb-8">
       <h2 className="text-xl font-semibold mb-4">Parcel Information</h2>
 
       {/* Parcel Type */}
-      <div className="flex items-center gap-6 mb-6">
+      <div className="flex items-center gap-6 mb-2">
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="radio"
@@ -27,6 +37,11 @@ const ParcelInfo = ({ register, errors, watch }) => {
           <span>Not-Document</span>
         </label>
       </div>
+      {
+        errors.parcelType && (
+          <p className="text-red-500 text-sm mb-4">Parcel type is required</p>
+        )
+      }
 
       {/* Parcel Name + Weight */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -49,7 +64,7 @@ const ParcelInfo = ({ register, errors, watch }) => {
         <div>
           <label className="font-medium">Parcel Weight (KG)</label>
           <input
-            type="number"
+            type="text"
             step="0.1"
             placeholder="Parcel Weight (KG)"
             {...register("parcelWeight", {
