@@ -9,6 +9,7 @@ import PrivateRoute from "../routes/PrivateRoute";
 import SendPercel from "../pages/SendPercel/SendPercel";
 import DashBoardLayout from "../layouts/DashBoardLayout";
 import Myparcels from "../pages/Dashboard/MyParcels/MyParcels";
+import Payment from "../pages/Dashboard/payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
         }
     ]
   },
-  // authencation routs
+  //============= authencation routs
   {
     path:'/',
     Component: AuthLayouts,
@@ -45,7 +46,7 @@ export const router = createBrowserRouter([
       }
     ]
   },
-  // dashboard routs
+  //=============== dashboard routs
   {
     path:'/dashboard',
     element: <PrivateRoute><DashBoardLayout/></PrivateRoute>,
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path:'myparcels',
         Component: Myparcels
+      },
+      {
+        path:'payment/:id',
+        Component: Payment
       }
     ]
   }

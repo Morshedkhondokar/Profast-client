@@ -2,10 +2,12 @@ import { useQuery,  } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const MyParcels = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
 
   // Date Formatter: DD/MM/YYYY, 12-hour time with seconds + am/pm
@@ -33,8 +35,9 @@ const MyParcels = () => {
     console.log("View:", parcel);
   };
 
-  const handlePay = (parcel) => {
-    console.log("Pay:", parcel);
+  const handlePay = (id) => {
+    console.log("Proced to Pay:", id);
+    navigate(`/dashboard/payment/${id}`);
   };
 
    // 🔥 DELETE with SweetAlert2 Confirmation
@@ -134,7 +137,7 @@ const MyParcels = () => {
                   {p.paymentStatus !== "paid" && (
                     <button
                       className="btn btn-success btn-sm"
-                      onClick={() => handlePay(p)}
+                      onClick={() => handlePay(p._id)}
                     >
                       Pay
                     </button>
