@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 // Assuming this is your custom hook for axios with auth/interceptors
 import useAxiosSecure from "../../../hooks/useAxiosSecure"; 
+import useAuth from "../../../hooks/useAuth";
 
 const PendingRiders = () => {
   // Custom hook for authenticated axios
-  const axiosSecure = useAxiosSecure(); 
+  const axiosSecure = useAxiosSecure();
+  const {user} = useAuth();
   
   // Use riders as the main source of data, initialized by useQuery
   // The local state will be used for the modal selection only.
@@ -16,7 +18,7 @@ const PendingRiders = () => {
 
   // 1. Fetching Data using React Query
   // The 'riders' variable holds the fetched list of pending riders
-  const { 
+  const {  
     data: riders = [], // Default to an empty array
     refetch, 
     isPending 
@@ -34,7 +36,7 @@ const PendingRiders = () => {
   }
 
   // 2. Approve Rider Function
-  const approveRider = (id) => {
+  const approveRider = (id, email) => {
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to approve this rider?",
@@ -48,6 +50,7 @@ const PendingRiders = () => {
         try {
           const res = await axiosSecure.patch(`/riders/update/${id}`, {
             status: "active",
+            email: email,
           });
 
           if (res.data.modifiedCount > 0) {
@@ -204,7 +207,7 @@ const PendingRiders = () => {
 
               <button
                 className="btn btn-success"
-                onClick={() => approveRider(selectedRider._id)}
+                onClick={() => approveRider(selectedRider._id, user.email)}
               >
                 Approve
               </button>
