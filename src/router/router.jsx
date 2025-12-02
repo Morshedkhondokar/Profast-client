@@ -16,6 +16,8 @@ import BeARider from "../pages/Dashboard/beARider/BeARider";
 import PendingRiders from "../pages/Dashboard/pendingRiders/PendingRiders";
 import ActiveRiders from "../pages/Dashboard/ActiveRiders/ActiveRiders";
 import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import AdminRoute from "../routes/AdminRoute";
 
 
 
@@ -39,6 +41,10 @@ export const router = createBrowserRouter([
         {
           path: '/sendPercel',
           element: <PrivateRoute><SendPercel/></PrivateRoute>
+        },
+        {
+          path: '/forbidden',
+          Component: Forbidden
         }
     ]
   },
@@ -76,11 +82,11 @@ export const router = createBrowserRouter([
       },
       {
         path:'pendingRiders',
-        Component: PendingRiders
+        element: <AdminRoute><PendingRiders/></AdminRoute>
       },
       {
         path: 'activeRiders',
-        Component: ActiveRiders
+        element:<AdminRoute><ActiveRiders/></AdminRoute>
       },
       {
         path:'track',
@@ -88,7 +94,7 @@ export const router = createBrowserRouter([
       },
       {
         path:'makeAdmin',
-        Component: MakeAdmin
+        element: <AdminRoute><MakeAdmin/></AdminRoute>
       }
     ]
   }

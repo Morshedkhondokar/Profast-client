@@ -85,7 +85,7 @@ const MakeAdmin = () => {
       {users.length > 0 && (
         <table className="table w-full border">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-gray-700">
               <th>#</th>
               <th>Email</th>
               <th>Role</th>
@@ -99,7 +99,10 @@ const MakeAdmin = () => {
               <tr key={u._id}>
                 <td>{index + 1}</td>
                 <td>{u.email}</td>
-                <td className="capitalize">{u.role}</td>
+                <td className={`capitalize`}>
+                  <span className={`bg-gray-800 rounded-full p-2 ${u.role === 'admin'&& 'text-green-500'} 
+                  ${u.role === 'rider'&& 'text-yellow-500'}`}>{u.role}</span>
+                </td>
                 <td>{new Date(u.created_date).toLocaleDateString()}</td>
                 <td>
                   {u.role === "admin" ? (
