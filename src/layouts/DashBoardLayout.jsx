@@ -97,8 +97,14 @@ const DashBoardLayout = () => {
           </li>
 
           {
-            !isLoading && userRole === 'admin' &&
+            !isLoading && userRole.role === 'admin' &&
             <>
+              <li>
+                <NavLink to="assign-rider">
+                  <FaUserCheck className="inline-block mr-2" />
+                 Assign Rider
+                </NavLink>
+              </li>
               <li>
                 <NavLink to="activeRiders">
                   <FaUserCheck className="inline-block mr-2" />

@@ -61,6 +61,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        <h1 className="mr-1.5">{user?.email}</h1>
        {
        user ?  <button onClick={logOut} className="btn btn-primary text-black">LogOut</button>
        :   

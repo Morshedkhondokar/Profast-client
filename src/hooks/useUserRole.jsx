@@ -1,10 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from './useAxiosSecure';
-import useAuth from './useAuth';
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "./useAuth";
+import useAxiosSecure from "./useAxiosSecure";
 
+// hooks/useUserRole.js - 
 const useUserRole = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading: authLoading } = useAuth();
+
+  console.log("useUserRole: User email from useAuth:", user?.email); // ✅ Add this
 
   const {
     data: userRole = null,
@@ -19,15 +22,15 @@ const useUserRole = () => {
       }
 
       const response = await axiosSecure.get(`/users/role/${user.email}`);
-      return response.data; // { email, role, created_date, ... }
+      return response.data;
     },
-    enabled: !!user?.email && !authLoading, // If only email and no auth loading 
-    staleTime: 5 * 60 * 1000, // 5 minutes cache  
-    retry: 2, 
-  });
+    enabled: !!user?.email && !authLoading,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  }); 
 
   return {
-    userRole, // { email, role, created_date, ... }
+    userRole,
     isLoading: authLoading || roleLoading,
     error,
     refetch,
@@ -36,5 +39,4 @@ const useUserRole = () => {
     isUser: userRole?.role === 'user',
   };
 };
-
 export default useUserRole;
