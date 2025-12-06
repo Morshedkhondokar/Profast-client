@@ -19,6 +19,8 @@ import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import AssignRider from "../pages/Dashboard/AssignRider/AssignRider";
+import PendingDeliveries from "../pages/Dashboard/PendingDeliveries/PendingDeliveries";
+import RiderRoute from "../routes/RiderRoute";
 
 
 
@@ -85,6 +87,13 @@ export const router = createBrowserRouter([
         path:'paymentHistory',
         element: <PaymentHistory/>
       },
+      // only rider can see
+        {
+        path: 'pendingDeliveries',
+        element:<RiderRoute><PendingDeliveries/></RiderRoute>
+      },
+
+      // only admin can see
       {
         path:'pendingRiders',
         element: <AdminRoute><PendingRiders/></AdminRoute>
@@ -100,7 +109,8 @@ export const router = createBrowserRouter([
       {
         path:'makeAdmin',
         element: <AdminRoute><MakeAdmin/></AdminRoute>
-      }
+      },
+    
     ]
   }
 ]);

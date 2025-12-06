@@ -9,11 +9,12 @@ import {
   FaUserClock,
   FaUserCheck,
   FaUserShield,
+  FaTasks,
 } from "react-icons/fa";
 import useUserRole from "../hooks/useUserRole";
 
 const DashBoardLayout = () => {
-  const { userRole, isLoading } = useUserRole();
+  const { userRole, isLoading,isRider } = useUserRole();
 
   return (
     <div className="drawer lg:drawer-open">
@@ -96,8 +97,23 @@ const DashBoardLayout = () => {
             </NavLink>
           </li>
 
+            {/* riders links */}
+            {isRider && (
+              
+              
+              <li>
+                <NavLink to="pendingDeliveries">
+                  <FaTasks className="inline-block mr-2" />
+                    Pending Deliveries 
+                </NavLink>
+              </li>
+            )
+            }
+
+
+          {/* admin links */}
           {
-            !isLoading && userRole.role === 'admin' &&
+            !isLoading && userRole?.role === 'admin' &&
             <>
               <li>
                 <NavLink to="assign-rider">
